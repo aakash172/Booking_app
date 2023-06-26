@@ -6,8 +6,10 @@ const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 require("dotenv").config();
 const User = require("./models/User.js");
+const jwt = require('jsonwebtoken');
 
 const bcryptSalt = bcrypt.genSaltSync(10);
+const jwtSecret = 'kjasghkjfgfd';
 
 app.use(express.json());
 
@@ -24,7 +26,7 @@ app.get("/test", (req, res) => {
   res.json("test ok");
 });
 
-app.post("/register", async (req, res) => {
+app.post('/register', async (req, res) => {
   const { name, email, password } = req.body;
   try {
     const userDoc = await User.create({
@@ -38,6 +40,29 @@ app.post("/register", async (req, res) => {
     res.status(422).json(e);
   }
 });
+
+
+app.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+  const userDoc = await User.findOne({ email });
+  if (userDoc) {
+    const passOk = bcrypt.compareSync(password, userDoc.password);
+    if (passOk) {
+      jwt.sign({ email: userDoc.email, id: userDoc._id }, jwtSecret, {}, (err, token) => {
+        if (err) throw err;
+        res.cookie('token', '').json('password correct');
+      });
+
+    } else {
+      res.status(422).json('password Incorrect');
+    }
+  } else {
+    res.json('Not Found');
+  }
+
+});
+
+
 const port = 4000;
 app.listen(port, () => {
   console.log(`Server is running at port ${port}`);
