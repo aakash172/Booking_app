@@ -9,7 +9,7 @@ const User = require("./models/User.js");
 const jwt = require('jsonwebtoken');
 
 const bcryptSalt = bcrypt.genSaltSync(10);
-const jwtSecret = 'kjasghkjfgfd';
+const jwtSecret = 'kjasghkjfgdfhhhhhhhhcghfgfgfd';
 
 app.use(express.json());
 
@@ -50,7 +50,7 @@ app.post('/login', async (req, res) => {
     if (passOk) {
       jwt.sign({ email: userDoc.email, id: userDoc._id }, jwtSecret, {}, (err, token) => {
         if (err) throw err;
-        res.cookie('token', '').json('password correct');
+        res.cookie('token', token).json(userDoc);
       });
 
     } else {
