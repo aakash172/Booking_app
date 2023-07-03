@@ -85,6 +85,10 @@ app.get('/profile', (req, res) => {
 
 });
 
+app.post('/logout',(req,res)=>{
+  res.cookie('token','').json(true);
+})
+
 const port = 4000;
 app.listen(port, () => {
   console.log(`Server is running at port ${port}`);
