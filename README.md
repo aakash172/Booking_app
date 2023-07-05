@@ -22,13 +22,12 @@ Demo here (Link will added soon).
 
 ## Features
 
-List the key features of your app here. For example:
 - User registration and authentication
 - Property search and listing
 - Property details page
 - Booking management
 - User profile
-- ...
+
 
 ## Screenshots
 

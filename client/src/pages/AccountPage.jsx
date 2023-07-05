@@ -7,6 +7,7 @@ import PlacesPage from "./PlacesPage.jsx";
 export default function AccountPage() {
   const { ready, user, setUser } = useContext(UserContext);
   const [redirect, setredirect] = useState(null);
+   
   let { subpage } = useParams();
   if (subpage === undefined) {
     subpage = "profile";
@@ -21,6 +22,7 @@ export default function AccountPage() {
   if (!ready) {
     return "Loading........";
   }
+
   if (ready && !user && !redirect) {
     return <Navigate to={"/login"} />;
   }

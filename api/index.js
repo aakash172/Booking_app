@@ -8,6 +8,7 @@ require("dotenv").config();
 const User = require("./models/User.js");
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
+const imageDownloader=require('image-downloader');
 
 const bcryptSalt = bcrypt.genSaltSync(10);
 const jwtSecret = 'kjasghkjfgdfhhhhhhhhcghfgfgfd';
@@ -74,10 +75,10 @@ app.get('/profile', (req, res) => {
 
 
   if (token) {
-    jwt.verify(token, jwtSecret, {}, async(err, userData) => {
+    jwt.verify(token, jwtSecret, {}, async (err, userData) => {
       if (err) throw err;
-      const {name,email,_id}=await User.findById(userData.id)
-      res.json({name,email,_id});
+      const { name, email, _id } = await User.findById(userData.id)
+      res.json({ name, email, _id });
     })
   } else {
     res.json(null);
@@ -85,11 +86,14 @@ app.get('/profile', (req, res) => {
 
 });
 
-app.post('/logout',(req,res)=>{
-  res.cookie('token','').json(true);
+app.post('/logout', (req, res) => {
+  res.cookie('token', '').json(true);
 })
 
 const port = 4000;
+app.post('/upload-by-link', (req, res) => {
+  const { link } = req.body;
+})
 app.listen(port, () => {
   console.log(`Server is running at port ${port}`);
 });

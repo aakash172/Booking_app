@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import Perks from "../Perks";
+import Perks from "../Perks.jsx";
 import { useState } from "react";
 
 export default function PlacesPage() {
@@ -14,6 +14,11 @@ export default function PlacesPage() {
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
   const [maxGuests, setMaxGuests] = useState(1);
+
+  function addPhotoByLink(){
+    
+  }
+
 
   return (
     <div>
@@ -52,7 +57,7 @@ export default function PlacesPage() {
             <input
               type="text"
               value={title}
-              onChange={(ev) => setTitle(ev.target, value)}
+              onChange={(ev) => setTitle(ev.target.value)}
               placeholder="title, for example radisson blu"
             />
 
@@ -61,7 +66,7 @@ export default function PlacesPage() {
             <input
               type="text"
               value={address}
-              onChange={(ev) => setAddress(ev.target, value)}
+              onChange={(ev) => setAddress(ev.target.value)}
               placeholder="address"
             />
 
@@ -72,7 +77,7 @@ export default function PlacesPage() {
               <input
                 type="text"
                 value={photoLink}
-                onChange={(ev) => setPhotoLink(ev.target, value)}
+                onChange={(ev) => setPhotoLink(ev.target.value)}
                 placeholder={"Add using a link.....jpg"}
               />
               <button className="bg-gray-200 px-8 rounded-2xl">
@@ -103,7 +108,7 @@ export default function PlacesPage() {
             <p className="text-gray-500 text-sm">Description for place</p>
             <textarea
               value={description}
-              onChange={(ev) => setDescription(ev.target, value)}
+              onChange={(ev) => setDescription(ev.target.value)}
               placeholder="Provide Description here"
             />
 
@@ -118,7 +123,7 @@ export default function PlacesPage() {
             <p className="text-gray-500 text-sm">house rules, etc</p>
             <textarea
               value={extraInfo}
-              onChange={(ev) => setExtraInfo(ev.target, value)}
+              onChange={(ev) => setExtraInfo(ev.target.value)}
               placeholder="Provide Extra info here"
             />
 
@@ -133,7 +138,7 @@ export default function PlacesPage() {
                 <input
                   type="text"
                   value={checkIn}
-                  onChange={(ev) => setCheckIn(ev.target, value)}
+                  onChange={(ev) => setCheckIn(ev.target.value)}
                   placeholder="16:30"
                 />
               </div>
@@ -142,7 +147,7 @@ export default function PlacesPage() {
                 <input
                   type="text"
                   value={checkOut}
-                  onChange={(ev) => setCheckOut(ev.target, value)}
+                  onChange={(ev) => setCheckOut(ev.target.value)}
                   placeholder="17:30"
                 />
               </div>
@@ -151,7 +156,7 @@ export default function PlacesPage() {
                 <input
                   type="number"
                   value={maxGuests}
-                  onChange={(ev) => setMaxGuests(ev.target, value)}
+                  onChange={(ev) => setMaxGuests(ev.target.value)}
                   placeholder="1"
                 />
               </div>
