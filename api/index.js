@@ -9,13 +9,14 @@ const User = require("./models/User.js");
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const imageDownloader = require('image-downloader');
+const multer=require('multer')
 
 const bcryptSalt = bcrypt.genSaltSync(10);
 const jwtSecret = 'kjasghkjfgdfhhhhhhhhcghfgfgfd';
 
 app.use(express.json());
 app.use(cookieParser());
-
+app.use('/uploads', express.static(__dirname + '/uploads'));
 app.use(
   cors({
     credentials: true,
@@ -92,14 +93,18 @@ app.post('/logout', (req, res) => {
 
 const port = 4000;
 
-app.post('/upload-by-link', (req, res) => {
+app.post('/upload-by-link', async (req, res) => {
   const { link } = req.body;
   const newName = 'photo' + Date.now() + '.jpg';
-  imageDownloader.image({
+  await imageDownloader.image({
     url: link,
-    dest: __dirname + '/uploads' + newName,
+    dest: __dirname + '/uploads/' + newName,
   })
   res.json(newName);
+})
+
+app.post('/upload',(req,res)=>{
+  
 })
 app.listen(port, () => {
   console.log(`Server is running at port ${port}`);
