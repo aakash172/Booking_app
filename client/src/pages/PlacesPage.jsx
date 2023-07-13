@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import Perks from "../Perks.jsx";
 import { useState } from "react";
+import axios from "axios"
 
 export default function PlacesPage() {
   const { action } = useParams();
@@ -15,10 +16,14 @@ export default function PlacesPage() {
   const [checkOut, setCheckOut] = useState("");
   const [maxGuests, setMaxGuests] = useState(1);
 
-  function addPhotoByLink(){
-    
+  async function addPhotoByLink(ev) {
+    ev.preventDefault();
+    const {data}=await axios.post('/upload-by-link', { link: photoLink });
+    setAddedPhotos(prev=>{
+      return [...prev,filename];
+    });  
+    setPhotoLink('');
   }
-
 
   return (
     <div>
@@ -80,7 +85,7 @@ export default function PlacesPage() {
                 onChange={(ev) => setPhotoLink(ev.target.value)}
                 placeholder={"Add using a link.....jpg"}
               />
-              <button className="bg-gray-200 px-8 rounded-2xl">
+              <button onClick={addPhotoByLink} className="bg-gray-200 px-8 rounded-2xl">
                 Add&nbsp;Photo
               </button>
             </div>

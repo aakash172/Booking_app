@@ -8,7 +8,7 @@ require("dotenv").config();
 const User = require("./models/User.js");
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
-const imageDownloader=require('image-downloader');
+const imageDownloader = require('image-downloader');
 
 const bcryptSalt = bcrypt.genSaltSync(10);
 const jwtSecret = 'kjasghkjfgdfhhhhhhhhcghfgfgfd';
@@ -91,8 +91,15 @@ app.post('/logout', (req, res) => {
 })
 
 const port = 4000;
+
 app.post('/upload-by-link', (req, res) => {
   const { link } = req.body;
+  const newName = 'photo' + Date.now() + '.jpg';
+  imageDownloader.image({
+    url: link,
+    dest: __dirname + '/uploads' + newName,
+  })
+  res.json(newName);
 })
 app.listen(port, () => {
   console.log(`Server is running at port ${port}`);
