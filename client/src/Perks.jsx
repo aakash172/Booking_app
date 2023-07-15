@@ -1,8 +1,17 @@
-export default function Perks({selected,onChange}) {
+export default function Perks({ selected, onChange }) {
+  function handleCbClick(ev) {
+    const { checked, name } = ev.target;
+    if (checked) {
+      onChange([...selected, name]);
+    } else {
+      onchange([...selected.filter((selectedName) => selectedName !== name)]);
+    }
+  }
+
   return (
     <>
       <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
-        <input type="checkbox" />
+        <input type="checkbox" name="wifi" onChange={() => handleCbClick} />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -21,7 +30,11 @@ export default function Perks({selected,onChange}) {
         <span>WiFi</span>
       </label>
       <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
-        <input type="checkbox" />
+        <input
+          type="checkbox"
+          name="Free Parking Spot"
+          onChange={() => handleCbClick}
+        />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -40,7 +53,7 @@ export default function Perks({selected,onChange}) {
         <span>Free Parking Spot</span>
       </label>
       <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
-        <input type="checkbox" />
+        <input type="checkbox" name="TV" onChange={() => handleCbClick} />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -59,7 +72,7 @@ export default function Perks({selected,onChange}) {
         <span>TV</span>
       </label>
       <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
-        <input type="checkbox" />
+        <input type="checkbox" name="Pets" onChange={() => handleCbClick} />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -78,7 +91,11 @@ export default function Perks({selected,onChange}) {
         <span>Pets</span>
       </label>
       <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
-        <input type="checkbox" />
+        <input
+          type="checkbox"
+          name="Private Entrance"
+          onChange={() => handleCbClick}
+        />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -97,7 +114,7 @@ export default function Perks({selected,onChange}) {
         <span>Private Entrance</span>
       </label>
       <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
-        <input type="checkbox" />
+        <input type="checkbox" name="Etc" onChange={() => handleCbClick} />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -113,7 +130,7 @@ export default function Perks({selected,onChange}) {
           />
         </svg>
 
-        <span>Private Entrance</span>
+        <span>Etc</span>
       </label>
     </>
   );
