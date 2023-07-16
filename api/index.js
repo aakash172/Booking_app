@@ -129,16 +129,16 @@ app.post('/places', (req, res) => {
     extraInfo,
     checkIn,
     checkOut,
-    maxGuests } = req.body();
+    maxGuests } = req.body;
   jwt.verify(token, jwtSecret, {}, async (err, userData) => {
     if (err) throw err;
 
 
     const placeDoc = await Place.create({
-      owner: userData.id, 
+      owner: userData.id,
       title,
       address,
-      addedPhotos,
+      photos: addedPhotos,
       description,
       perks,
       extraInfo,
@@ -146,13 +146,18 @@ app.post('/places', (req, res) => {
       checkOut,
       maxGuests
     });
-
-
     res.json(placeDoc);
   });
 })
 
+app.get("/places", (req, res) => {
+  const { token } = req.cookies;
+  jwt.verify(token, jwtSecret, {}, async (err, userData) => {
+    const { id } = userData;
+    res.json(await Place.find({ owner: id }));
+  });
 
+})
 
 app.listen(port, () => {
   console.log(`Server is running at port ${port}`);

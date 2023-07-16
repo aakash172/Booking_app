@@ -2,10 +2,11 @@ import PhotosUploader from "../PhotosUploader.jsx";
 import Perks from "../Perks.jsx";
 import { useState } from "react";
 import AccountNav from "../AccountNav.jsx";
-import { Navigate } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 export default function PlacesFormPage() {
+  const {id}=useParams();
   const [title, setTitle] = useState("");
   const [address, setAddress] = useState("");
   const [addedPhotos, setAddedPhotos] = useState([]);
@@ -32,11 +33,10 @@ export default function PlacesFormPage() {
     });
     setRedirect(true);
   }
-  
-//   if (redirect) {
-//     console.log("dk");
-//     return <Navigate to={"/account/places"} />;
-//   }
+
+  if (redirect) {
+    return <Navigate to={"/account/places"} />;
+  }
 
   return (
     <div>
