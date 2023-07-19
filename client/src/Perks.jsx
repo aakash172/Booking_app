@@ -1,7 +1,8 @@
 export default function Perks({ selected, onChange }) {
-  function handleCbClick(ev) {
+
+  function handleCbClick(ev) {  
     const { checked, name } = ev.target;
-    if (checked) {
+    if (checked===true) {
       onChange([...selected, name]);
     } else {
       onchange([...selected.filter((selectedName) => selectedName !== name)]);
@@ -15,7 +16,7 @@ export default function Perks({ selected, onChange }) {
           type="checkbox"
           checked={selected.includes("wifi")}
           name="wifi"
-          onChange={() => handleCbClick}
+          onChange={handleCbClick}
         />
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -39,7 +40,7 @@ export default function Perks({ selected, onChange }) {
           type="checkbox"
           checked={selected.includes("Free Parking Spot")}
           name="Free Parking Spot"
-          onChange={() => handleCbClick}
+          onChange={handleCbClick}
         />
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -63,7 +64,7 @@ export default function Perks({ selected, onChange }) {
           type="checkbox"
           checked={selected.includes("TV")}
           name="TV"
-          onChange={() => handleCbClick}
+          onChange={handleCbClick}
         />
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -87,7 +88,7 @@ export default function Perks({ selected, onChange }) {
           type="checkbox"
           checked={selected.includes("Pets")}
           name="Pets"
-          onChange={() => handleCbClick}
+          onChange={handleCbClick}
         />
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -111,7 +112,7 @@ export default function Perks({ selected, onChange }) {
           type="checkbox"
           checked={selected.includes("Private Entrance")}
           name="Private Entrance"
-          onChange={() => handleCbClick}
+          onChange={handleCbClick}
         />
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -135,7 +136,7 @@ export default function Perks({ selected, onChange }) {
           type="checkbox"
           checked={selected.includes("Etc")}
           name="Etc"
-          onChange={() => handleCbClick}
+          onChange={handleCbClick}
         />
         <svg
           xmlns="http://www.w3.org/2000/svg"
