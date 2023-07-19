@@ -1,12 +1,12 @@
 import PhotosUploader from "../PhotosUploader.jsx";
 import Perks from "../Perks.jsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AccountNav from "../AccountNav.jsx";
 import { Navigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 export default function PlacesFormPage() {
-  const {id}=useParams();
+  const { id } = useParams();
   const [title, setTitle] = useState("");
   const [address, setAddress] = useState("");
   const [addedPhotos, setAddedPhotos] = useState([]);
@@ -18,20 +18,57 @@ export default function PlacesFormPage() {
   const [maxGuests, setMaxGuests] = useState(1);
   const [redirect, setRedirect] = useState(false);
 
-  async function addNewPlace(ev) {
-    ev.preventDefault();
-    await axios.post("/places", {
-      title,
-      address,
-      addedPhotos,
-      description,
-      perks,
-      extraInfo,
-      checkIn,
-      checkOut,
-      maxGuests
+  useEffect(() => {
+    if (id === undefined) {
+      return;
+    }
+    axios.get("/places/" + id).then((response) => {
+      const { data } = response;
+      setTitle(data.title);
+      setAddress(data.address);
+      setAddedPhotos(data.photos);
+      setDescription(data.description);
+      setPerks(data.perks);
+      setExtraInfo(data.extraInfo);
+      setCheckIn(data.checkIn);
+      setCheckOut(data.checkOut);
+      setMaxGuests(data.maxGuests);
     });
-    setRedirect(true);
+  }, [id]);
+
+  async function savePlace(ev) {
+    ev.preventDefault();
+
+    if (id) {
+      // if we already have place then we need to update this
+      await axios.put("/places", {
+        id,
+        title,
+        address,
+        addedPhotos,
+        description,
+        perks,
+        extraInfo,
+        checkIn,
+        checkOut,
+        maxGuests,
+      });
+      setRedirect(true);
+    } else {
+      // We not have any places so we have to create a new one.
+      await axios.post("/places", {
+        title,
+        address,
+        addedPhotos,
+        description,
+        perks,
+        extraInfo,
+        checkIn,
+        checkOut,
+        maxGuests,
+      });
+      setRedirect(true);
+    }
   }
 
   if (redirect) {
@@ -41,7 +78,7 @@ export default function PlacesFormPage() {
   return (
     <div>
       <AccountNav />
-      <form onSubmit={addNewPlace}>
+      <form onSubmit={savePlace}>
         <h2 className="text-2xl mt-4">Title</h2>
         <p className="text-gray-500 text-sm">
           Title for your place.Should be short and catchy as in advertisement
