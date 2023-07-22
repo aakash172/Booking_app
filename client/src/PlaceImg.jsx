@@ -1,3 +1,5 @@
+import Image from "./Image";
+
 export default function PlaceImg({ place, index = 0, className = null }) {
   if (!place.photos?.length) {
     return "You have no bookings.";
@@ -6,9 +8,9 @@ export default function PlaceImg({ place, index = 0, className = null }) {
     className = "object-cover rounded-xl";
   }
   return (
-    <img
+    <Image
       className={className}
-      src={"http://localhost:4000/uploads/" + place.photos[index]}
+      src={place.photos[index]}
       alt=""
     />
   );
