@@ -1,8 +1,12 @@
 {
   "rewrites": [
     {
-      "source": "/api/(.*)",
-      "destination": "/api/index.js"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
+
+// git add .
+// git commit -m "deploy"
+// git push origin master
