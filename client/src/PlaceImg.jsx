@@ -1,17 +1,13 @@
-import Image from "./Image";
+import Image from "./Image.jsx";
 
-export default function PlaceImg({ place, index = 0, className = null }) {
+export default function PlaceImg({place,index=0,className=null}) {
   if (!place.photos?.length) {
-    return "You have no bookings.";
+    return '';
   }
   if (!className) {
-    className = "object-cover rounded-xl";
+    className = 'object-cover';
   }
   return (
-    <Image
-      className={className}
-      src={place.photos[index]}
-      alt=""
-    />
+    <Image className={className} src={place.photos[index]} alt=""/>
   );
 }
