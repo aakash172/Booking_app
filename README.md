@@ -1,4 +1,4 @@
-# Roamstay - MERN Stack + Vite
+# TripConnect - MERN Stack + Vite
 
 
 
@@ -8,30 +8,23 @@ This is a full-stack Airbnb-like web application built using the MERN stack (Mon
 
 ## Demo
 
-Demo here (Link will added soon).
+[Demo here](https://trip-connect.vercel.app/)
+
 
 ## Table of Contents
 
 - [Features](#features)
-- [Screenshots](#screenshots)
-- [Installation](#installation)
-- [Usage](#usage)
 - [Technologies Used](#technologies-used)
-- [Contributing](#contributing)
-- [License](#license)
+
 
 ## Features
 
 - User registration and authentication
-- Property search and listing
-- Property details page
+- Place details page
 - Booking management
-- User profile
+- Add place and upload photo
 
 
-## Screenshots
-
-Will update soon
 
 ## Installation
 
@@ -43,38 +36,39 @@ Will update soon
 
 ## Technologies Used
 
-- **Front-end:**
-  - React.js (with hooks)
-  - Vite
-  - Axios (for API requests)
-  - React Router (for routing)
+### Frontend
+- React.js (with hooks)
+- Vite
+- Axios (for API requests)
+- React Router (for routing)
+- Tailwind CSS
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB (or any database you used)
+- Mongoose (for MongoDB object modeling)
+- JSON Web Tokens (JWT) (for authentication)
+- bcrypt (for password hashing)
+- AWS SDK client for Amazon S3
+- Image Downloader
+- Multer
+- Cors
+- dotenv
+- Cookie Parser
+- JSON Web Tokens (JWT)
+- bcryptjs
+- mongoose
+- mime-types
+
  
 
-- **Back-end:**
-  - Node.js
-  - Express.js
-  - MongoDB (or any database you used)
-  - Mongoose (for MongoDB object modeling)
-  - JSON Web Tokens (JWT) (for authentication)
-  - bcrypt (for password hashing)
- 
-
-- **Build Tool:**
-  - Vite
 
 
-- **Other Tools and Technologies:**
+###Other Tools and Technologies:
   - Git (version control)
   - GitHub (code repository and collaboration)
   - VS Code (code editor)
+  - Vercel (For deployment)
   
 
-
-
-
-
-## Usage
-
-1. Start the development server:
-   ```bash
-   npm run dev
