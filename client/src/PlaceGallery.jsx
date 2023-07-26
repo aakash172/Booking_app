@@ -5,10 +5,10 @@ export default function PlaceGallery({ place }) {
   const [showAllPhotos, setShowAllPhotos] = useState(false);
   if (showAllPhotos) {
     return (
-      <div className="absolute inset-0 bg-black text-white min-h-screen">
-        <div className="bg-black p-8 grid gap-4">
+      <div className="absolute inset-0 bg-black text-black min-h-screen z-50">
+        <div className="bg-white p-8 grid gap-4">
           <div>
-            <h2 className="text-3xl mr-48">Photos of {place.title}</h2>
+            <h2 className="text-3xl mr-48 text-center">Photos of {place.title}</h2>
             <button
               onClick={() => setShowAllPhotos(false)}
               className="fixed right-12 top-8 flex gap-1 py-2 px-4 rounded-2xl shadow shadow-black bg-white text-black"
@@ -33,7 +33,7 @@ export default function PlaceGallery({ place }) {
           {place?.photos?.length > 0 &&
             place.photos.map((photo) => (
               <div>
-                <Image src={photo} />
+                <Image src={photo} className="w-3/5 mx-auto"/>
               </div>
             ))}
         </div>
