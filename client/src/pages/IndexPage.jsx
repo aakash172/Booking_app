@@ -13,7 +13,7 @@ export default function IndexPage() {
   }, []);
 
   return (
-    <div className="mt-8 grid gap-6 gap-x-8 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <div className="mt-8 grid gap-6 gap-x-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {places.length > 0 &&
         places.map((place) => (
           <Link to={"/place/" + place._id}>
