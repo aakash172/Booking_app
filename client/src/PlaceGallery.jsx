@@ -76,7 +76,7 @@ export default function PlaceGallery({ place }) {
       </div>
       <button
         onClick={() => setShowAllPhotos(true)}
-        className="flex gap-1 absolute bottom-2 right-2 py-2 px-4 bg-white rounded-2xl shadow shadow-gray"
+        className="flex gap-1 absolute bottom-2 right-2 py-1 px-2 sm:py-2 sm:px-4 bg-white rounded-2xl shadow shadow-gray text-xs md:text-base"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -84,7 +84,7 @@ export default function PlaceGallery({ place }) {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-6 h-6"
+          className="w-3 h-3 sm:w-6 sm:h-6"
         >
           <path
             strokeLinecap="round"
